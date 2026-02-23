@@ -34,7 +34,7 @@ Jump to:
 - [Update](#update-existing-data)
 - [Delete](#delete-data)
 ### The API endpoint
-All database requests are made using the same endpoint: the Web App URL specified in the deployment wizard the Apps Script. Add the URL parameter `table` to Web App URL. This parameter should be set to the name of the table you want to make requests about. If this parameter is omitted, the request will go to the first tab in your Google Sheet.
+All database requests are made using the same endpoint: the Web App URL specified in the deployment wizard in the Apps Script. Add the URL parameter `table` to Web App URL. This parameter should be set to the name of the table you want to make requests about. If this parameter is omitted, the request will go to the first tab in your Google Sheet.
 
 Example: the fetch request below selects the table (tab) named "Table1".
 
@@ -93,16 +93,19 @@ Possible errors:
 Example (assumes Table 1 has two columns named "Column1" and "Column2"):
 ```
 const dbAPI = "https://your-web-app-url/exec";
+
+const requestBody = {
+    action: "add",
+    data: {
+        Column1: "ABC",
+        Column2: 123
+    }
+}
+
 const response = await fetch(`${dbAPI}?table=Table1`, {
     method: "POST",
     headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: {
-        action: "add",
-        data: {
-            Column1: "ABC",
-            Column2: 123
-        }
-    }
+    body: JSON.stringify(requestBody)
 });
 const content = await response.json();
 console.log(content.message); // prints the message returned from the DB
@@ -139,22 +142,26 @@ Possible errors:
 Example (assumes Table 1 has two columns named "Column1" and "Column2"):
 ```
 const dbAPI = "https://your-web-app-url/exec";
+
+const requestBody = {
+    action: "update",
+    data: {
+        select: {
+            Column1: "ABC",
+            Column2: 123
+        }
+        update: {
+            Column2: 456
+        }
+    }
+}
+
 const response = await fetch(`${dbAPI}?table=Table1`, {
     method: "POST",
     headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: {
-        action: "update",
-        data: {
-            select: {
-                Column1: "ABC",
-                Column2: 123
-            }
-            update: {
-                Column2: 456
-            }
-        }
-    }
+    body: JSON.stringify(requestBody)
 });
+
 const content = await response.json();
 console.log(content.message); // prints the message returned from the DB
 ```
@@ -190,19 +197,23 @@ Possible errors:
 Example (assumes Table 1 has two columns named "Column1" and "Column2"):
 ```
 const dbAPI = "https://your-web-app-url/exec";
+
+const requestBody = {
+    action: "delete",
+    data: {
+        select: {
+            Column1: "ABC",
+            Column2: 123
+        }
+    }
+}
+
 const response = await fetch(`${dbAPI}?table=Table1`, {
     method: "POST",
     headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: {
-        action: "delete",
-        data: {
-            select: {
-                Column1: "ABC",
-                Column2: 123
-            }
-        }
-    }
+    body: JSON.stringify(requestBody)
 });
+
 const content = await response.json();
 console.log(content.message); // prints the message returned from the DB
 ```
