@@ -27,6 +27,12 @@ Row 1 in each table defines the column headers. When naming columns:
 - Ensure each column name is unique within the table
 
 ## Database API
+Jump to:
+- [The API endpoint](#the-api-endpoint)
+- [Read](#read-data)
+- [Add](#add-data)
+- [Update](#update-existing-data)
+- [Delete](#delete-data)
 ### The API endpoint
 All database requests are made using the same endpoint: the Web App URL specified in the deployment wizard the Apps Script. Add the URL parameter `table` to Web App URL. This parameter should be set to the name of the table you want to make requests about. If this parameter is omitted, the request will go to the first tab in your Google Sheet.
 
@@ -58,7 +64,7 @@ const content = await response.json();
 const data = content.data;
 console.log(data); // prints all rows of data in Table1
 ```
-### Adding new data
+### Add data
 **Method:** POST
 
 Add one row of data to the specified table. 
