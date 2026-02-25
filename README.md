@@ -3,19 +3,20 @@
 Turn any Google Sheet into a relational database using appscript.js.
 
 ## Quick Start
-Add the contents of appsscript.js to your Google Sheet:
+If you are using the WADD Google Sheet Database template, skip this step. If you are starting from scratch, add the contents of appsscript.js to your Google Sheet:
 1. In the Google Sheet, go to Extensions > Apps Script.
 2. Copy-paste the contents of appsscript.js into the Apps Script window.
 3. Save.
 
 Deploy the script as a web app:
-1. From the Apps Script window, click Deploy > New Deployment.
-2. In the wizard, under "select type" in the left column, choose "Web App".
-3. In the wizard, check the following settings:
+1. In the Google Sheet, open the Apps Script window by going to Extensions > Apps Script.
+2. From the Apps Script window, click Deploy > New Deployment.
+3. In the wizard, under "select type" in the left column, choose "Web App".
+4. In the wizard, check the following settings:
     - Execute as: must be set to yourself
     - Who as access: must be set to "Anyone"
-4. In the wizard, click Deploy.
-5. When deployment is complete, you will see multiple URLs. Copy the URL labelled "Web App URL" and use it in your web application—this is the API endpoint. The URL will end in "/exec".
+5. In the wizard, click Deploy.
+6. When deployment is complete, you will see multiple URLs. Copy the URL labelled "Web App URL" and use it in your web application—this is the API endpoint. The URL will end in "/exec".
 
 ## Setting Up Your Database
 Each tab in the Google Sheet acts as a table in a your database. Change the name of a tab to name a database table. When naming:
